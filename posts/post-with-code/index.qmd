@@ -1,9 +1,8 @@
 ---
-title: "Post With Code"
-author: "Harlow Malloc"
+title: "Order of Operations in SQL vs R"
 date: "2026-03-06"
-categories: [news, code, analysis]
-image: "image.jpg"
+title-block-banner: false
 ---
 
-This is a post with executable code. and stuff ya
+After around 5 years of working primarily in R, 
+

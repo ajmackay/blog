@@ -1,12 +1,58 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+title: "Order of operations in SQL vs R"
 date: "2026-03-03"
-categories: [news]
+title-block-banner: false
 ---
 
-This is the first post in a Quarto blog. Welcome!
+After 5 years of working in R, there were a few things in SQL that took some time for my brain to get used to. One of those was the order of operations in which code is executed.
 
-![](thumbnail.jpg)
+In R's tidyverse, the order in which you piece together your functions is the order in which your code code is executed. For example:
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+``` r
+library(dplyr)
+
+airquality %>% 
+  filter(!is.na(Ozone)) %>% 
+  select(Ozone, Wind, Temp) %>% 
+  arrange(Ozone) %>% 
+  mutate(ozone_group = ntile(Ozone, 5)) %>% 
+  group_by(ozone_group) %>% 
+  summarise(mean_wind = mean(Wind),
+            mean_temp = mean(Temp))
+```
+
+follows the order of operation in the way you have specified them. If you moved the `select` above `filter`, the code would first select the columns that you identify before filtering.
+
+In SQL there is a set order of operations and this doesn't follow the same pattern that one might be used to in R.
+
+Despite SQL's `FROM` being one of the last lines in a query, it is the first to be executed. And While `SELECT` appears at the top, it runs after `FROM`, `WHERE`, `GROUP BY` and `HAVING`. The order of execution for common SQL functions is:
+
+1.  `FROM / JOIN`
+2.  `WHERE`
+3.  `GROUP BY`
+4.  `HAVING`
+5.  `SELECT`
+6.  `QUALIFY`
+7.  `ORDER BY`
+
+The equivalent of the above R code in SQL is:
+
+``` sql
+SELECT
+  ozone_group
+, AVG(Wind) AS mean_wind
+, AVG(Temp)  AS mean_temp
+FROM (
+  SELECT
+    Ozone
+  , Wind
+  , Temp
+  , NTILE(5) OVER (ORDER BY Ozone) AS ozone_group
+  FROM airquality
+  WHERE Ozone IS NOT NULL
+)
+GROUP BY ozone_group
+ORDER BY ozone_group
+```
+
+The nice thing about SQL I suppose is that once you get used to the order in which functions need to be in, there is no risk that you will mess up your code execution by having your functions in different orders. For example, if create a new column that relies on your table being a certain order, this can be easily messed up if you have your `arrange()` function below your `mutate()` and as this won't throw an error, you may not realise until you notice your output is out of whack. Something like this is less likely to occur in SQL as the execution order is always the same.

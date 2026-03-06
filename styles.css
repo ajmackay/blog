@@ -1,1 +1,244 @@
-/* css styles */
+/*-- Google Fonts --*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/*-- Root variables --*/
+:root {
+  --base03: #002b36;
+  --base02: #073642;
+  --base01: #586e75;
+  --base00: #657b83;
+  --base0: #839496;
+  --base1: #93a1a1;
+  --base2: #eee8d5;
+  --base3: #fdf6e3;
+  --accent: #657b83;
+  --accent-light: #93a1a1;
+  --accent-subtle: #eee8d5;
+  --text-main: #073642;
+  --text-muted: #839496;
+  --bg-code: #eee8d5;
+  --border: #d9d2c0;
+}
+
+/*-- Base typography --*/
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+
+/*-- Links --*/
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+a:hover {
+  color: var(--base01);
+  border-bottom-color: var(--base01);
+}
+
+/*-- Layout: medium width --*/
+.quarto-container {
+  max-width: 960px !important;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/*-- Navbar --*/
+.navbar {
+  background-color: var(--base3) !important;
+  border-bottom: 1px solid var(--border);
+  padding: 0.8rem 1.5rem;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--base02) !important;
+}
+
+.nav-link {
+  color: var(--base01) !important;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--base03) !important;
+}
+
+/*-- Title banner --*/
+#title-block-header {
+  background-color: transparent !important;
+  background: none !important;
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 0;
+}
+
+#title-block-header .title {
+  color: var(--base02) !important;
+}
+/*-- Blog post cards --*/
+.quarto-post {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s ease;
+  background: #fff;
+}
+
+.quarto-post:hover {
+  box-shadow: 0 4px 16px rgba(101, 123, 131, 0.12);
+}
+
+/*-- Code blocks --*/
+pre {
+  background-color: var(--bg-code) !important;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 1.2rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+code {
+  font-size: 0.9em;
+  background-color: var(--accent-subtle);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  color: var(--base01);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/*-- Dark mode --*/
+[data-bs-theme="dark"] {
+  --accent: #93a1a1;
+  --accent-light: #839496;
+  --text-main: #eee8d5;
+  --text-muted: #657b83;
+  --bg-code: #073642;
+  --border: #0d4555;
+}
+
+[data-bs-theme="dark"] body {
+  background-color: #002b36;
+  color: var(--text-main);
+}
+
+[data-bs-theme="dark"] .navbar {
+  background-color: #073642 !important;
+  border-bottom-color: #0d4555;
+}
+
+[data-bs-theme="dark"] .quarto-post {
+  background: #073642;
+  border-color: #0d4555;
+}
+
+[data-bs-theme="dark"] pre {
+  background-color: var(--bg-code) !important;
+}
+
+/*-- Post spacing --*/
+.quarto-title {
+  margin-bottom: 0.5rem;
+}
+
+.quarto-title-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+}
+
+/*-- Serif heading for blog title --*/
+h1.title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--base02);
+}
+
+/*-- Hide author on post cards --*/
+.listing-author {
+  display: none;
+}
+
+/*-- Post card title in serif --*/
+.listing-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/*-- Hide post card images --*/
+.listing-image {
+  display: none;
+}
+
+/*-- Remove banner box around Blog Posts title --*/
+.quarto-listing-container-default ~ * ,
+#listing-listing + .quarto-title-block,
+.quarto-title-block {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/*-- Remove box around post cards --*/
+.quarto-post {
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  padding: 1.2rem 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.quarto-post:hover {
+  box-shadow: none !important;
+}
+
+/*-- Remove background from Blog Posts title --*/
+.quarto-title-block,
+.quarto-title-block .quarto-title,
+#quarto-content .quarto-title-block {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/*-- Fix post card title colour --*/
+.listing-title a,
+.listing-title {
+  color: var(--text-main) !important;
+  border-bottom: none !important;
+}
+
+.listing-title a:hover {
+  color: var(--base01) !important;
+}
