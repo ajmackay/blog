@@ -28,12 +28,13 @@ In SQL there is a set order of operations and this doesn't follow the same patte
 Despite SQL's `FROM` being one of the last lines in a query, it is the first to be executed. And While `SELECT` appears at the top, it runs after `FROM`, `WHERE`, `GROUP BY` and `HAVING`. The order of execution for common SQL functions is:
 
 1.  `FROM / JOIN`
-2.  `WHERE`
-3.  `GROUP BY`
-4.  `HAVING`
-5.  `SELECT`
-6.  `QUALIFY`
-7.  `ORDER BY`
+2.  `PIVOT`
+3.  `WHERE`
+4.  `GROUP BY`
+5.  `HAVING`
+6.  `SELECT`
+7.  `QUALIFY`
+8.  `ORDER BY`
 
 The equivalent of the above R code in SQL is:
 
