@@ -30,11 +30,13 @@ Despite SQL's `FROM` being one of the last lines in a query, it is the first to 
 1.  `FROM / JOIN`
 2.  `PIVOT`
 3.  `WHERE`
-4.  `GROUP BY`
+4.  `GROUP BY` \*
 5.  `HAVING`
 6.  `SELECT`
 7.  `QUALIFY`
 8.  `ORDER BY`
+
+*\*Databricks does support grouping by a column alias defined in the same* `SELECT`, so groups will be evaluated after they are selected and defined.
 
 The equivalent of the above R code in SQL is:
 
